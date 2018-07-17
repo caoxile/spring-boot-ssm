@@ -59,6 +59,9 @@ mvn spring-boot:run
 - Fastjson（[官方中文文档](https://github.com/alibaba/fastjson/wiki/Quick-Start-CN)）
 - JWT(JSON Web Token) ([JWT介绍](https://www.caoxile.com/blog/2018/07/json-web-token))
 
+## 其他说明
+该项目来源于[spring-boot-api-project-seed](https://github.com/lihengming/spring-boot-api-project-seed).因为原项目没有继续维护升级,我受益于该项目,本人对项目进行了改造升级,并计划持续的改进.所以就有了现在的这个项目.这里要感谢原项目作者的开源分享.
+
 ## License
 MIT
 
