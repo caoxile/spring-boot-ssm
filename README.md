@@ -11,6 +11,7 @@ springboot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简�
 - [x] JWT(Json Web Token)安全认证
 - [x] 代码自动生成工具
 - [x] Druid 集成阿里Druid数据库连接池以及API和数据库等监控            		
+- [ ] Log日志管理
 - [ ] 缓存框架
 - [ ] 安全和权限管理
 
@@ -54,8 +55,9 @@ mvn spring-boot:run
 - MyBatis 通用Mapper插件（[官方中文文档](https://mapperhelper.github.io/docs/)）
 - MyBatis PageHelper分页插件（[官方中文文档](https://github.com/pagehelper/Mybatis-PageHelper/blob/master/README_zh.md)）
 - Druid （[官方中文文档](https://github.com/alibaba/druid/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)）
+- Druid监控（[监控配置和使用说明](https://www.caoxile.com/blog/2018/07/spring-boot-1-druid%E7%9B%91%E6%8E%A7)）
 - Fastjson（[官方中文文档](https://github.com/alibaba/fastjson/wiki/Quick-Start-CN)）
-- JWT(JSON Web Token) ([JWT介绍](https://www.caoxile.com/blog/2018/07/json-web-token/))
+- JWT(JSON Web Token) ([JWT介绍](https://www.caoxile.com/blog/2018/07/json-web-token))
 
 ## License
 MIT

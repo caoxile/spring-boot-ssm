@@ -16,9 +16,9 @@ import java.util.*;
  */
 public class CodeGenerator {
     //JDBC配置
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/dev";//数据库链接
-    private static final String JDBC_USERNAME = "dev";//数据库用户名
-    private static final String JDBC_PASSWORD = "dev_password";//数据库密码
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/test";//数据库链接
+    private static final String JDBC_USERNAME = "name";//数据库用户名
+    private static final String JDBC_PASSWORD = "password";//数据库密码
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";//数据库驱动类型
 
     //代码生成的路径配置
@@ -187,8 +187,7 @@ public class CodeGenerator {
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
-            cfg.getTemplate("controller-restful.ftl").process(data, new FileWriter(file));
-//            cfg.getTemplate("controller.ftl").process(data, new FileWriter(file));
+            cfg.getTemplate("controller.ftl").process(data, new FileWriter(file));
 
             System.out.println(modelNameUpperCamel + "Controller.java 生成成功");
         } catch (Exception e) {
