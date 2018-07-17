@@ -1,45 +1,63 @@
-![Licence](https://img.shields.io/badge/licence-none-green.svg)
-[![GitHub Release](https://img.shields.io/github/release/lihengming/spring-boot-api-project-seed.svg)](https://github.com/lihengming/spring-boot-api-project-seed/releases)
 ## 简介
-Spring Boot API Project Seed 是一个基于Spring Boot & MyBatis的种子项目，用于快速构建中小型API、RESTful API项目，该种子项目已经有过多个真实项目的实践，稳定、简单、快速，使我们摆脱那些重复劳动，专注于业务代码的编写，减少加班。下面是一个简单的使用演示，看如何基于本项目在短短几十秒钟内实现一套简单的API，并运行提供服务。
+springboot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简单通用的项目，用于快速构建中小型API的后端服务系统. 可以做为一个种子项目,进行改造升级.
 
-[![请选择超清](https://raw.githubusercontent.com/lihengming/java-codes/master/shared-resources/github-images/project-example-youku.png)](http://v.youku.com/v_show/id_XMjg1NjYwNDgxNg==.html?spm=a2h3j.8428770.3416059.1)
-## 特征&提供
-- 最佳实践的项目结构、配置文件、精简的POM（[查看项目结构图](https://github.com/lihengming/java-codes/blob/master/shared-resources/github-images/project-struct.png)）
-- 统一响应结果封装及生成工具
-- 统一异常处理
-- 简单的接口签名认证
-- 常用基础方法抽象封装
-- 使用Druid Spring Boot Starter 集成Druid数据库连接池与监控
-- 使用FastJsonHttpMessageConverter，提高JSON序列化速度
-- 集成MyBatis、通用Mapper插件、PageHelper分页插件，实现单表业务零SQL
-- 提供代码生成器根据表名生成对应的Model、Mapper、MapperXML、Service、ServiceImpl、Controller等基础代码，其中Controller模板默认提供POST和RESTful两套，根据需求在```CodeGenerator.genController(tableName)```方法中自己选择，默认使用POST模板。代码模板可根据实际项目的需求来扩展，由于每个公司业务都不太一样，所以只提供了一些比较基础、通用的模板，**主要是提供一个思路**来减少重复代码的编写，我在实际项目的使用中，其实根据公司业务的抽象编写了大量的模板。另外，使用模板也有助于保持团队代码风格的统一
-- 另有彩蛋，待你探索
- 
-## 快速开始
+## 特征
+- [x] Spring Boot 2                                                                 
+- [x] Spring MVC 		 		
+- [x] Mybatis                
+- [x] Spring Boot Test
+- [x] 集成通用Mapper插件、PageHelper分页插件,实现单表业务的基本操作.
+- [x] 统一的Response封装,统一的异常处理,基础方法的抽象封装.
+- [x] JWT(Json Web Token)安全认证
+- [x] 代码自动生成工具
+- [x] Druid 集成阿里Druid数据库连接池以及API和数据库等监控            		
+- [ ] 缓存框架
+- [ ] 安全和权限管理
+
+## 快速启动
 1. 克隆项目
-2. 对```test```包内的代码生成器```CodeGenerator```进行配置，主要是JDBC，因为要根据表名来生成代码
-3. 如果只是想根据上面的演示来亲自试试的话可以使用```test resources```目录下的```demo-user.sql```，否则忽略该步
-3. 输入表名，运行```CodeGenerator.main()```方法，生成基础代码（可能需要刷新项目目录才会出来）
-4. 根据业务在基础代码上进行扩展
-5. 对开发环境配置文件```application-dev.properties```进行配置，启动项目，Have Fun！
- 
-## 开发建议
-- 表名，建议使用小写，多个单词使用下划线拼接
-- Model内成员变量建议与表字段数量对应，如需扩展成员变量（比如连表查询）建议创建DTO，否则需在扩展的成员变量上加```@Transient```注解，详情见[通用Mapper插件文档说明](https://mapperhelper.github.io/docs/2.use/)
-- 建议业务失败直接使用```ServiceException("message")```抛出，由统一异常处理器来封装业务失败的响应结果，比如```throw new ServiceException("该手机号已被注册")```，会直接被封装为```{"code":400,"message":"该手机号已被注册"}```返回，无需自己处理，尽情抛出
-- 需要工具类的话建议先从```apache-commons-*```和```guava```中找，实在没有再造轮子或引入类库，尽量精简项目
-- 开发规范建议遵循阿里巴巴Java开发手册（[最新版下载](https://github.com/lihengming/java-codes/blob/master/shared-resources/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8CV1.3.0.pdf))
-- 建议在公司内部使用[ShowDoc](https://github.com/star7th/showdoc)、[SpringFox-Swagger2](https://github.com/springfox/springfox) 、[RAP](https://github.com/thx/RAP)等开源项目来编写、管理API文档
- 
-## 技术选型&文档
-- Spring Boot（[查看Spring Boot学习&使用指南](http://www.jianshu.com/p/1a9fd8936bd8)）
-- MyBatis（[查看官方中文文档](http://www.mybatis.org/mybatis-3/zh/index.html)）
-- MyBatisb通用Mapper插件（[查看官方中文文档](https://mapperhelper.github.io/docs/)）
-- MyBatis PageHelper分页插件（[查看官方中文文档](https://pagehelper.github.io/)）
-- Druid Spring Boot Starter（[查看官方中文文档](https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter/)）
-- Fastjson（[查看官方中文文档](https://github.com/Alibaba/fastjson/wiki/%E9%A6%96%E9%A1%B5)）
-- 其他略
+```
+git clone https://github.com/caoxile/springboot-ssm.git
+```
+2. 修改对```test```包内的代码生成器```CodeGenerator```的数据库链接等配置
+```
+//JDBC配置
+private static final String JDBC_URL = "jdbc:mysql://localhost:3306/test";//数据库链接
+private static final String JDBC_USERNAME = "name";//数据库用户名
+private static final String JDBC_PASSWORD = "password";//数据库密码
+private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";//数据库驱动类
+```
+3. 在```CodeGenerator.main```方法中,输入表名,然后运行.(即可在src下生成基础代码)
+```
+public static void main(String[] args) {
+    genCode("bs_ump_user");
+//  genCodeByCustomModelName("输入表名","输入自定义Model名称");
+}
+```
+4. 对开发环境配置文件```application-dev.properties```进行配置(数据库).
+``` 
+spring.datasource.url=jdbc:mysql://localhost:3306/test
+spring.datasource.username=name
+spring.datasource.password=password
+```
+5. 启动
+```
+//在IDE中启动,或者直接执行下面命令
+mvn spring-boot:run
+```
+
+
+## 技术文档
+- Spring Boot（[Spring Boot官方文档](https://spring.io/projects/spring-boot)）
+- Spring MVC ([Spring MVC官方文档](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html))
+- MyBatis（[官方中文文档](http://www.mybatis.org/mybatis-3/zh/index.html)）
+- MyBatis 通用Mapper插件（[官方中文文档](https://mapperhelper.github.io/docs/)）
+- MyBatis PageHelper分页插件（[官方中文文档](https://github.com/pagehelper/Mybatis-PageHelper/blob/master/README_zh.md)）
+- Druid （[官方中文文档](https://github.com/alibaba/druid/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)）
+- Fastjson（[官方中文文档](https://github.com/alibaba/fastjson/wiki/Quick-Start-CN)）
+- JWT(JSON Web Token) ([JWT介绍](https://www.caoxile.com/blog/2018/07/json-web-token/))
 
 ## License
-无，纯粹开源分享，感谢大家 [Star](https://github.com/lihengming/spring-boot-api-project-seed/stargazers) & [Fork](https://github.com/lihengming/spring-boot-api-project-seed/network/members) 的支持。
+MIT
+
+

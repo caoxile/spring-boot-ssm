@@ -1,23 +1,32 @@
-target/
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-
-### IntelliJ IDEA ###
-.idea
+# IntelliJ IDEA
+.idea/
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
+# Eclipse
+.settings/
+.classpath
+.project
+
+# NetBeans
 nbproject/private/
 build/
 nbbuild/
 dist/
 nbdist/
-.nb-gradle/
+nbactions.xml
+nb-configuration.xml
+
+# OS
+.DS_Store
+
+# Maven
+target/
+
+# Log
+*.log
+*.log.zip
+
+# Jrebel
+rebel.xml
