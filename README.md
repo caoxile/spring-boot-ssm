@@ -1,5 +1,5 @@
 ## 简介
-springboot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简单通用的项目，用于快速构建中小型API的后端服务系统. 可以做为一个种子项目,进行改造升级.
+spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简单通用的项目，用于快速构建中小型API的后端服务系统. 可以做为一个种子项目,进行改造升级.
 
 ## 特征
 - [x] Spring Boot 2                                                                 
@@ -18,7 +18,7 @@ springboot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简�
 ## 快速启动
 1. 克隆项目
 ```
-git clone https://github.com/caoxile/springboot-ssm.git
+git clone https://github.com/caoxile/spring-boot-ssm.git
 ```
 2. 修改对```test```包内的代码生成器```CodeGenerator```的数据库链接等配置
 ```
