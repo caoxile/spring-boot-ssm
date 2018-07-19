@@ -11,7 +11,7 @@ springboot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简�
 - [x] JWT(Json Web Token)安全认证
 - [x] 代码自动生成工具
 - [x] Druid 集成阿里Druid数据库连接池以及API和数据库等监控            		
-- [ ] Log日志管理
+- [x] Log日志管理
 - [ ] 缓存框架
 - [ ] 安全和权限管理
 
