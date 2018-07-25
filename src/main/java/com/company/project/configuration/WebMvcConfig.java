@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.company.project.auth.constants.AuthConstants;
 import com.company.project.core.Result;
 import com.company.project.core.ResultCode;
 import com.company.project.core.ServiceException;
@@ -12,7 +13,6 @@ import com.company.project.core.util.JwtTokenUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -40,13 +40,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     private final Logger logger = LoggerFactory.getLogger(WebMvcConfig.class);
 
-    private static final String HEADER_AUTH = "Authorization";
-
     @Value("${spring.profiles.active}")
     private String env;//当前激活的配置文件
-
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
 
     //使用阿里 FastJson Http的message转换工具
     @Override
@@ -67,10 +62,16 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
         exceptionResolvers.add((HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) ->{
                 Result result = new Result();
-                if (e instanceof ServiceException) {//业务失败的异常，如“账号或密码错误”
+                if(e instanceof IllegalArgumentException){
+                    //参数异常
+                    result.setCode(ResultCode.FAIL).setMessage(e.getMessage());
+                    logger.info(e.getMessage());
+                } else if (e instanceof ServiceException) {
+                    //业务失败的异常，如“账号或密码错误”
                     result.setCode(ResultCode.FAIL).setMessage(e.getMessage());
                     logger.info(e.getMessage());
                 } else if (e instanceof NoHandlerFoundException) {
+                    //接口不存在异常
                     result.setCode(ResultCode.NOT_FOUND).setMessage("接口 [" + request.getRequestURI() + "] 不存在");
                 } else if (e instanceof ServletException) {
                     result.setCode(ResultCode.FAIL).setMessage(e.getMessage());
@@ -102,30 +103,30 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedMethods("*");
     }
 
-    //添加拦截器
+    /**
+     * 所有的HTTP请求都在这里拦截
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        //Json Web Token
-        if (!"dev".equals(env)) { //开发环境忽略JWT认证
-            registry.addInterceptor(new HandlerInterceptorAdapter() {
-                @Override
-                public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-                    //验证JWT
-                    boolean pass = validateAuthToken(request);
-                    if (pass) {
-                        return true;
-                    } else {
-                        logger.warn("JWT认证失败，请求接口：{}，请求IP：{}，请求参数：{}",
-                                request.getRequestURI(), HttpUtil.getIpAddress(request), JSON.toJSONString(request.getParameterMap()));
+        registry.addInterceptor(new HandlerInterceptorAdapter() {
+            @Override
+            public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+                //验证JWT
+                boolean pass = validateAuthToken(request);
+                if (pass) {
+                    return true;
+                } else {
+                    logger.warn("JWT认证失败，请求接口：{}，请求IP：{}，请求参数：{}",
+                            request.getRequestURI(), HttpUtil.getIpAddress(request), JSON.toJSONString(request.getParameterMap()));
 
-                        Result result = new Result();
-                        result.setCode(ResultCode.UNAUTHORIZED).setMessage("认证失败");
-                        responseResult(response, result);
-                        return false;
-                    }
+                    Result result = new Result();
+                    result.setCode(ResultCode.UNAUTHORIZED).setMessage("认证失败");
+                    responseResult(response, result);
+                    return false;
                 }
-            });
-        }
+            }
+        }).excludePathPatterns("/auth/login");
     }
 
     private void responseResult(HttpServletResponse response, Result result) {
@@ -143,11 +144,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
      * 校验Jwt
      */
     private boolean validateAuthToken(HttpServletRequest request) {
-        String token = request.getHeader(HEADER_AUTH);
+        String token = request.getHeader(AuthConstants.HEADER_AUTH);
         if (StringUtils.isEmpty(token)) {
             return false;
         }
-        return jwtTokenUtil.validateToken(token);
+        return JwtTokenUtil.validateToken(token);
     }
 
 }

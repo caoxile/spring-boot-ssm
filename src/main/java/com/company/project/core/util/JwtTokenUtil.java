@@ -1,5 +1,6 @@
 package com.company.project.core.util;
 
+import com.company.project.auth.model.User;
 import com.company.project.configuration.WebMvcConfig;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -7,7 +8,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -20,9 +20,8 @@ import java.util.Map;
  * @Author caoxile
  * @Create 2018-07-13
  */
-@Component
 public class JwtTokenUtil {
-    private final Logger logger = LoggerFactory.getLogger(WebMvcConfig.class);
+    private static final Logger logger = LoggerFactory.getLogger(WebMvcConfig.class);
 
     private static final String SECRET = "my_secret"; //密钥
     private static final Long EXPIRATION = 60*60L; //Token有效时间(1小时);
@@ -33,12 +32,12 @@ public class JwtTokenUtil {
      * @param user
      * @return
      */
-    public String generateToken(JwtUser user){
+    public static String generateToken(User user){
         Map<String,Object> claims = new HashMap<>();
-        claims.put("id",user.getId());
-        claims.put("username",user.getUsername());
+        claims.put("userId",user.getUserId());
+        claims.put("loginName",user.getLoginName());
+        claims.put("userName",user.getUserName());
         claims.put("email",user.getEmail());
-        claims.put("enabled",user.isEnabled());
         final Date currentDate = new Date();
         return Jwts.builder()
                 .setClaims(claims)
@@ -53,7 +52,7 @@ public class JwtTokenUtil {
      * @param token
      * @return
      */
-    public Boolean validateToken(String token) {
+    public static Boolean validateToken(String token) {
         try {
             //1 校验并且获取负载中的claims
             Claims claims = getAllClaimsFromToken(token);
@@ -74,10 +73,15 @@ public class JwtTokenUtil {
      * @param token
      * @return
      */
-    public JwtUser getUserInfoFromToken(String token) {
+    public static User getUserInfoFromToken(String token) {
         try {
             Claims claims = getAllClaimsFromToken(token);
-            return new JwtUser(Long.valueOf(claims.get("id").toString()),(String)claims.get("username"),(String)claims.get("email"),(boolean)claims.get("enabled"));
+            User user = new User();
+            user.setUserId(Integer.valueOf(claims.get("userId").toString()));
+            user.setUserName((String)claims.get("userName"));
+            user.setLoginName((String)claims.get("loginName"));
+            user.setEmail((String)claims.get("email"));
+            return user;
         }catch (Exception e){
             logger.info("Token 校验失败",e);
             return null;
@@ -89,7 +93,7 @@ public class JwtTokenUtil {
      * @param token
      * @return
      */
-    public String refreshToken(String token) {
+    public static String refreshToken(String token) {
         final Date createdDate = new Date();
         final Date expirationDate = calculateExpirationDate(createdDate);
 
@@ -103,14 +107,14 @@ public class JwtTokenUtil {
                 .compact();
     }
 
-    private Claims getAllClaimsFromToken(String token){
+    private static Claims getAllClaimsFromToken(String token){
         return Jwts.parser()
                 .setSigningKey(SECRET)
                 .parseClaimsJws(token)
                 .getBody();
     }
 
-    private Date calculateExpirationDate(Date currentDate) {
+    private static Date calculateExpirationDate(Date currentDate) {
         return new Date(currentDate.getTime() + EXPIRATION * 1000);
     }
 

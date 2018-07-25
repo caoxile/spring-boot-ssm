@@ -1,10 +1,9 @@
 package com.conpany.project.core.util;
 
+import com.company.project.auth.model.User;
 import com.company.project.core.util.JwtTokenUtil;
-import com.company.project.core.util.JwtUser;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,9 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class JwtTokenUtilTest {
 
-    @InjectMocks
-    private JwtTokenUtil jwtTokenUtil;
-
 
     @Before
     public void init() {
@@ -30,26 +26,30 @@ public class JwtTokenUtilTest {
     @Test
     public void validateTokenTest(){
         String token = createToken();
-        Boolean validate = jwtTokenUtil.validateToken(token);
+        Boolean validate = JwtTokenUtil.validateToken(token);
         assertThat(validate).isEqualTo(true);
     }
 
     @Test
     public void getUserInfoFromTokenTest(){
         String token = createToken();
-        JwtUser jwtUser = jwtTokenUtil.getUserInfoFromToken(token);
-        assertThat(jwtUser).isNotNull();
-        assertThat(jwtUser.getUsername()).isEqualTo("caoxile");
+        User user = JwtTokenUtil.getUserInfoFromToken(token);
+        assertThat(user).isNotNull();
+        assertThat(user.getUserName()).isEqualTo("Tom James");
     }
 
     @Test
     public void refreshTokenTest(){
         String token = createToken();
-        jwtTokenUtil.refreshToken(token);
+        JwtTokenUtil.refreshToken(token);
     }
 
     private String createToken() {
-        JwtUser jwtUser = new JwtUser(1L,"caoxile","caoxile@126.com",true);
-        return jwtTokenUtil.generateToken(jwtUser);
+        User user = new User();
+        user.setUserId(1);
+        user.setUserName("Tom James");
+        user.setLoginName("Tom");
+        user.setEmail("caoxile@126.com");
+        return JwtTokenUtil.generateToken(user);
     }
 }
