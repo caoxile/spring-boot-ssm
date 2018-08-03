@@ -19,9 +19,9 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
 ```
     git clone https://github.com/caoxile/spring-boot-ssm.git
 ```
-2. 创建数据库
+2. 初始化表
 
-执行bin/init_db.sql脚本,初始化数据库
+    执行bin/init_db.sql脚本,初始化表和数据
 
 3. 自动生成代码
 - 修改对```test```包内的代码生成器```CodeGenerator```的数据库链接等配置
@@ -40,7 +40,7 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
         genCodeByCustomModelName("auth","auth_user","User"); // 参数1:模块名 参数2:表名 参数3:自定义Model名
     }
 ```
-5. 对开发环境配置文件```application-dev.properties```进行配置(数据库).
+4. 对开发环境配置文件```application-dev.properties```进行配置(数据库).
 ``` 
     spring.datasource.url=jdbc:mysql://localhost:3306/project?characterEncoding=utf-8&useSSL=false
     spring.datasource.username=tom
@@ -52,7 +52,7 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
     mvn spring-boot:run
 ```
 6. 使用Postman等工具测试API
-- 首先登录(/auth/login) 获取Token
+- 首先登录(/auth/login) 获取Token(用户名:tom 密码:hellotom)
 - 在Header中添加Authorization,值就是登录获取的Token,再测试其他API
 
 ## 技术文档
