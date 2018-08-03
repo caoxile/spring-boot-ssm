@@ -41,10 +41,8 @@ public class CodeGenerator {
     private static final String DATE = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        // 参数1:模块名 参数2:表名
-//        genCode("auth","auth_user");
-        // 参数1:模块名 参数2:表名 参数3:自定义Model名
-        genCodeByCustomModelName("auth","auth_user","User");
+//        genCode("auth","auth_user"); // 参数1:模块名 参数2:表名
+        genCodeByCustomModelName("auth","auth_user","User"); // 参数1:模块名 参数2:表名 参数3:自定义Model名
     }
 
     /**
