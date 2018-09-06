@@ -36,7 +36,7 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
 - 在```CodeGenerator.main```方法中,输入表名,然后运行.(即可在src下生成基础代码)
 ```
     public static void main(String[] args) {
-//        genCode("auth","auth_user"); // 参数1:模块名 参数2:表名
+        //genCode("auth","auth_user"); // 参数1:模块名 参数2:表名
         genCodeByCustomModelName("auth","auth_user","User"); // 参数1:模块名 参数2:表名 参数3:自定义Model名
     }
 ```
