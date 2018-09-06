@@ -12,7 +12,7 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
 - [x] 代码自动生成工具
 - [x] Druid 集成阿里Druid数据库连接池以及API和数据库等监控            		
 - [x] Log日志管理
-- [ ] 缓存框架
+- [x] Redis集成
 
 ## 快速启动
 1. 克隆项目
@@ -67,7 +67,7 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
 - JWT(JSON Web Token) ([JWT介绍](https://www.caoxile.com/blog/2018/07/json-web-token))
 
 ## 其他说明
-该项目来源于[spring-boot-api-project-seed](https://github.com/lihengming/spring-boot-api-project-seed).因为原项目没有继续维护升级,我受益于该项目,本人对项目进行了改造升级,并计划持续的改进.所以就有了现在的这个项目.这里要感谢原项目作者的开源分享.
+该项目来源于[spring-boot-api-project-seed](https://github.com/lihengming/spring-boot-api-project-seed).
 
 ## License
 MIT

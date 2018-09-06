@@ -70,6 +70,13 @@
             <version>1.1.10</version>
         </dependency>
 
+        <!--Spring Boot Redis Starter依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-redis</artifactId>
+            <version>1.4.7.RELEASE</version>
+        </dependency>
+
         <!--常用库依赖-->
         <dependency>
             <groupId>commons-codec</groupId>

@@ -2,14 +2,12 @@ package com.conpany.project.core.util;
 
 import com.company.project.auth.model.User;
 import com.company.project.core.util.JwtTokenUtil;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.MockitoAnnotations;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * @Package com.conpany.project.core.util
+ * @Package com.company.project.core.util
  * @Description
  * @Project spring-boot-ssm
  * @Author caoxile
@@ -20,22 +18,22 @@ public class JwtTokenUtilTest {
 
     @Before
     public void init() {
-        MockitoAnnotations.initMocks(this);
+        System.out.println("Before test....");
     }
 
     @Test
     public void validateTokenTest(){
         String token = createToken();
         Boolean validate = JwtTokenUtil.validateToken(token);
-        assertThat(validate).isEqualTo(true);
+        Assert.assertTrue(validate);
     }
 
     @Test
     public void getUserInfoFromTokenTest(){
         String token = createToken();
         User user = JwtTokenUtil.getUserInfoFromToken(token);
-        assertThat(user).isNotNull();
-        assertThat(user.getUserName()).isEqualTo("Tom James");
+        Assert.assertNotNull(user);
+        Assert.assertEquals(user.getUserName(),"Tom James");
     }
 
     @Test
