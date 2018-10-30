@@ -66,9 +66,6 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
 - Fastjson（[官方中文文档](https://github.com/alibaba/fastjson/wiki/Quick-Start-CN)）
 - JWT(JSON Web Token) ([JWT介绍](https://www.caoxile.com/blog/2018/07/json-web-token))
 
-## 其他说明
-该项目来源于[spring-boot-api-project-seed](https://github.com/lihengming/spring-boot-api-project-seed).
-
 ## License
 MIT
 
