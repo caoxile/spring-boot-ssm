@@ -11,8 +11,11 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
 - [x] JWT(Json Web Token)安全认证
 - [x] 代码自动生成工具
 - [x] Druid 集成阿里Druid数据库连接池以及API和数据库等监控            		
-- [x] Log日志管理
-- [x] Redis集成
+- [x] 日志管理(集成Logback)
+- [x] 缓存框架(集成Redis)
+- [ ] 用户权限管理(集成Apache Shiro)
+- [ ] 操作日志记录
+- [ ] 任务调度(集成Quartz)
 
 ## 快速启动
 1. 克隆项目
@@ -65,6 +68,8 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
 - Druid监控（[监控配置和使用说明](https://www.caoxile.com/blog/2018/07/spring-boot-1-druid%E7%9B%91%E6%8E%A7)）
 - Fastjson（[官方中文文档](https://github.com/alibaba/fastjson/wiki/Quick-Start-CN)）
 - JWT(JSON Web Token) ([JWT介绍](https://www.caoxile.com/blog/2018/07/json-web-token))
+- Apache Shiro([跟我学Shiro](https://jinnianshilongnian.iteye.com/blog/2018398))
+- FEBS Shiro([FEBS后台权限管理系统](https://github.com/wuyouzhuguli/FEBS-Shiro))
 
 ## License
 MIT
