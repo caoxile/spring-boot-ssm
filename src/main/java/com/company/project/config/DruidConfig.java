@@ -1,4 +1,4 @@
-package com.company.project.configuration;
+package com.company.project.config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;

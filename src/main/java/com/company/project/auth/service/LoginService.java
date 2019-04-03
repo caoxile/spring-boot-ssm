@@ -1,6 +1,6 @@
 package com.company.project.auth.service;
 
-import com.company.project.auth.model.User;
+import com.company.project.core.Result;
 
 /**
  * @Package com.company.project.core.auth
@@ -11,6 +11,9 @@ import com.company.project.auth.model.User;
  */
 public interface LoginService {
 
-    User login(String loginName, String password);
+    Result login(String username, String password) throws Exception;
 
+    Result getInfo();
+
+    Result logout();
 }

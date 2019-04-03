@@ -1,19 +1,13 @@
 package com.company.project.auth.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.company.project.auth.constants.AuthConstants;
-import com.company.project.auth.model.User;
 import com.company.project.auth.service.LoginService;
 import com.company.project.core.Result;
-import com.company.project.core.ResultGenerator;
-import com.company.project.core.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Package com.company.project.auth.controller
@@ -30,18 +24,26 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping("/login")
-    public Result login(@RequestBody JSONObject loginUser){
-        String loginName = loginUser.getString("loginName");
+    public Result login(@RequestBody JSONObject loginUser) throws Exception {
+        String username = loginUser.getString("username");
         String password = loginUser.getString("password");
-        User user = loginService.login(loginName,password);
-        String token = JwtTokenUtil.generateToken(user);
-        return ResultGenerator.genSuccessResult(token);
+        return loginService.login(username, password);
     }
 
-    @PostMapping("/refresh/token")
-    public Result refreshToken(HttpServletRequest request){
-        String refreshToken = JwtTokenUtil.refreshToken(request.getHeader(AuthConstants.HEADER_AUTH));
-        return ResultGenerator.genSuccessResult(refreshToken);
+    /**
+     * 查询当前登录用户的信息
+     */
+    @PostMapping("/info")
+    public Result getInfo() {
+        return loginService.getInfo();
+    }
+
+    /**
+     * 登出
+     */
+    @PostMapping("/logout")
+    public Result logout() {
+        return loginService.logout();
     }
 
 }

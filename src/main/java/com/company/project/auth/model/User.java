@@ -1,34 +1,30 @@
 package com.company.project.auth.model;
 
-import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Table(name = "auth_user")
-public class User {
+public class User implements Serializable{
+    private static final long serialVersionUID = -5396036791044104116L;
     /**
      * 用户ID
      */
     @Id
-    @Column(name = "user_id")
-    private Integer userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     /**
      * 登录帐号
      */
-    @Column(name = "login_name")
-    private String loginName;
+    private String username;
 
     /**
      * 密码
      */
     private String password;
-
-    /**
-     * 用户名称
-     */
-    @Column(name = "user_name")
-    private String userName;
 
     /**
      * 手机号
@@ -41,39 +37,44 @@ public class User {
     private String email;
 
     /**
+     * 状态
+     */
+    private String status;
+
+    /**
      * 获取用户ID
      *
-     * @return user_id - 用户ID
+     * @return id - 用户ID
      */
-    public Integer getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
     }
 
     /**
      * 设置用户ID
      *
-     * @param userId 用户ID
+     * @param id 用户ID
      */
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
      * 获取登录帐号
      *
-     * @return login_name - 登录帐号
+     * @return username - 登录帐号
      */
-    public String getLoginName() {
-        return loginName;
+    public String getUsername() {
+        return username;
     }
 
     /**
      * 设置登录帐号
      *
-     * @param loginName 登录帐号
+     * @param username 登录帐号
      */
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
@@ -92,24 +93,6 @@ public class User {
      */
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    /**
-     * 获取用户名称
-     *
-     * @return user_name - 用户名称
-     */
-    public String getUserName() {
-        return userName;
-    }
-
-    /**
-     * 设置用户名称
-     *
-     * @param userName 用户名称
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     /**
@@ -146,5 +129,23 @@ public class User {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * 获取状态
+     *
+     * @return status - 状态
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * 设置状态
+     *
+     * @param status 状态
+     */
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

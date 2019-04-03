@@ -8,12 +8,11 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
 - [x] Spring Boot Test
 - [x] 集成通用Mapper插件、PageHelper分页插件,实现单表业务的基本操作.
 - [x] 统一的Response封装,统一的异常处理,基础方法的抽象封装.
-- [x] JWT(Json Web Token)安全认证
 - [x] 代码自动生成工具
 - [x] Druid 集成阿里Druid数据库连接池以及API和数据库等监控            		
 - [x] 日志管理(集成Logback)
-- [x] 缓存框架(集成Redis)
-- [ ] 用户权限管理(集成Apache Shiro)
+- [x] 缓存框架(集成Redis,Shiro共享session)
+- [x] 用户权限管理(集成Apache Shiro)
 - [ ] 操作日志记录
 - [ ] 任务调度(集成Quartz)
 
@@ -55,8 +54,8 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
     mvn spring-boot:run
 ```
 6. 使用Postman等工具测试API
-- 首先登录(/auth/login) 获取Token(用户名:tom 密码:hellotom)
-- 在Header中添加Authorization,值就是登录获取的Token,再测试其他API
+- 首先登录(/auth/login) (用户名:tom 密码:hellotom)
+- 再测试其他API
 
 ## 技术文档
 - Spring Boot（[Spring Boot官方文档](https://spring.io/projects/spring-boot)）

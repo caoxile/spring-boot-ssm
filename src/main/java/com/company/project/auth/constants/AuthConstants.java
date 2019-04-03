@@ -8,5 +8,5 @@ package com.company.project.auth.constants;
  * @Create 2018-07-25
  */
 public class AuthConstants {
-    public static final String HEADER_AUTH = "Authorization"; //Token放在HttpHeader中的Authorization中
+    public static final String LOCK_STATUS = "0"; //用户锁定状态
 }
