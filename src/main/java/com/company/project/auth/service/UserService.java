@@ -1,6 +1,6 @@
 package com.company.project.auth.service;
 import com.company.project.auth.model.User;
-import com.company.project.core.Service;
+import com.company.project.common.core.Service;
 
 
 /**

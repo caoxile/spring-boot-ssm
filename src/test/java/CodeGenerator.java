@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.*;
 import org.mybatis.generator.internal.DefaultShellCallback;
+import org.mybatis.generator.plugins.SerializablePlugin;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -29,7 +30,7 @@ public class CodeGenerator {
     private static final String SERVICE_IMPL_PACKAGE = "impl";//生成的ServiceImpl所在包
     private static final String CONTROLLER_PACKAGE = "controller";//生成的Controller所在包
 
-    private static final String MAPPER_INTERFACE_REFERENCE = BASE_PACKAGE + ".core.Mapper";//Mapper插件基础接口的完全限定名
+    private static final String MAPPER_INTERFACE_REFERENCE = BASE_PACKAGE + ".common.core.Mapper";//Mapper插件基础接口的完全限定名
 
     private static final String PROJECT_PATH = System.getProperty("user.dir");//项目在硬盘上的基础路径
     private static final String TEMPLATE_FILE_PATH = PROJECT_PATH + "/src/test/resources/generator/template";//模板位置
@@ -86,9 +87,14 @@ public class CodeGenerator {
         pluginConfiguration.addProperty("mappers", MAPPER_INTERFACE_REFERENCE);
         context.addPluginConfiguration(pluginConfiguration);
 
+        PluginConfiguration pluginConfiguration1 = new PluginConfiguration();
+        pluginConfiguration1.setConfigurationType("org.mybatis.generator.plugins.SerializablePlugin");
+        context.addPluginConfiguration(pluginConfiguration1);
+
         JavaModelGeneratorConfiguration javaModelGeneratorConfiguration = new JavaModelGeneratorConfiguration();
         javaModelGeneratorConfiguration.setTargetProject(PROJECT_PATH + JAVA_PATH);
         javaModelGeneratorConfiguration.setTargetPackage(getModelPackage(module));
+//        javaModelGeneratorConfiguration.addProperty("","");
         context.setJavaModelGeneratorConfiguration(javaModelGeneratorConfiguration);
 
         SqlMapGeneratorConfiguration sqlMapGeneratorConfiguration = new SqlMapGeneratorConfiguration();

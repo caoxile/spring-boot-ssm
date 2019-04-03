@@ -1,9 +1,10 @@
 package com.company.project.auth.controller;
 
+import com.company.project.common.core.Result;
+import com.company.project.common.core.ResultGenerator;
+import com.company.project.common.core.BaseController;
 import com.company.project.auth.model.User;
 import com.company.project.auth.service.UserService;
-import com.company.project.core.Result;
-import com.company.project.core.ResultGenerator;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/auth/user")
-public class UserController {
+public class UserController extends BaseController{
     @Resource
     private UserService userService;
 

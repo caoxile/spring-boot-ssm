@@ -1,6 +1,6 @@
 package ${basePackage}.${module}.service;
 import ${basePackage}.${module}.model.${modelNameUpperCamel};
-import ${basePackage}.core.Service;
+import ${basePackage}.common.core.Service;
 
 
 /**

@@ -2,7 +2,7 @@ package com.company.project.auth.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.company.project.auth.service.LoginService;
-import com.company.project.core.Result;
+import com.company.project.common.core.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

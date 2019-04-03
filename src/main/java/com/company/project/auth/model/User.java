@@ -1,14 +1,10 @@
 package com.company.project.auth.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
+import javax.persistence.*;
 
 @Table(name = "auth_user")
-public class User implements Serializable{
-    private static final long serialVersionUID = -5396036791044104116L;
+public class User implements Serializable {
     /**
      * 用户ID
      */
@@ -40,6 +36,8 @@ public class User implements Serializable{
      * 状态
      */
     private String status;
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * 获取用户ID

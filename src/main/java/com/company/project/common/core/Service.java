@@ -1,4 +1,4 @@
-package com.company.project.core;
+package com.company.project.common.core;
 
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import tk.mybatis.mapper.entity.Condition;

@@ -1,7 +1,7 @@
-package com.company.project.shiro;
+package com.company.project.common.shiro;
 
-import com.company.project.core.ResultCode;
-import com.company.project.core.ResultGenerator;
+import com.company.project.common.core.ResultCode;
+import com.company.project.common.core.ResultGenerator;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 
 import javax.servlet.ServletRequest;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 /**
- * @author: hxy
+ * @author: caoxile
  * @description: 对没有登录的请求进行拦截, 全部返回json信息. 覆盖掉shiro原本的跳转login.jsp的拦截方式
  * @date: 2017/10/24 10:11
  */

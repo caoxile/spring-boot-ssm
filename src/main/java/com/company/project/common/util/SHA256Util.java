@@ -1,4 +1,4 @@
-package com.company.project.core.util;
+package com.company.project.common.util;
 
 import org.apache.commons.codec.binary.Hex;
 import org.slf4j.Logger;

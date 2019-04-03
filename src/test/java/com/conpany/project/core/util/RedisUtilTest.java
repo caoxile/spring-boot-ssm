@@ -1,7 +1,7 @@
 package com.conpany.project.core.util;
 
 import com.company.project.Application;
-import com.company.project.core.util.RedisUtil;
+import com.company.project.common.util.RedisUtil;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * @Package com.company.project.core.util
+ * @Package com.company.project.common.util
  * @Description
  * @Project spring-boot-ssm
  * @Author caoxile

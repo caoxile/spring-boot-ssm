@@ -1,9 +1,9 @@
-package com.company.project.core.util;
+package com.company.project.common.util;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @Package com.company.project.core.util
+ * @Package com.company.project.common.util
  * @Description
  * @Project spring-boot-ssm
  * @Author caoxile

@@ -1,4 +1,4 @@
-package com.company.project.shiro;
+package com.company.project.common.shiro;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.mgt.SecurityManager;
@@ -18,7 +18,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @author: hxy
+ * @author: caoxile
  * @description: shiro配置类
  * @date: 2017/10/24 10:10
  */

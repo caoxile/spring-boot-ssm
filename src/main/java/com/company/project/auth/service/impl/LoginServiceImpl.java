@@ -2,11 +2,11 @@ package com.company.project.auth.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.company.project.auth.service.LoginService;
-import com.company.project.core.Constants;
-import com.company.project.core.Result;
-import com.company.project.core.ResultGenerator;
-import com.company.project.core.util.SHA256Util;
-import com.company.project.core.util.StringUtil;
+import com.company.project.common.core.Constants;
+import com.company.project.common.core.Result;
+import com.company.project.common.core.ResultGenerator;
+import com.company.project.common.util.SHA256Util;
+import com.company.project.common.util.StringUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.session.Session;
@@ -50,14 +50,15 @@ public class LoginServiceImpl implements LoginService{
     @Override
     public Result getInfo() {
         //从session获取用户信息
-        Session session = SecurityUtils.getSubject().getSession();
-        JSONObject userInfo = (JSONObject) session.getAttribute(Constants.SESSION_USER_INFO);
-        String username = userInfo.getString("username");
-//        JSONObject userPermission = permissionService.getUserPermission(username);
-        JSONObject userPermission = null;
-        session.setAttribute(Constants.SESSION_USER_PERMISSION, userPermission);
-        userInfo.put("userPermission", userPermission);
-        return ResultGenerator.genSuccessResult(userInfo);
+//        Session session = SecurityUtils.getSubject().getSession();
+//        JSONObject userInfo = (JSONObject) session.getAttribute(Constants.SESSION_USER_INFO);
+////        String username = userInfo.getString("username");
+////        JSONObject userPermission = permissionService.getUserPermission(username);
+//        JSONObject userPermission = null;
+//        session.setAttribute(Constants.SESSION_USER_PERMISSION, userPermission);
+//        userInfo.put("userPermission", userPermission);
+//        return ResultGenerator.genSuccessResult(userInfo);
+        return ResultGenerator.genSuccessResult(SecurityUtils.getSubject().getPrincipal());
     }
 
     @Override

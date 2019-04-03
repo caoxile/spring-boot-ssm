@@ -1,7 +1,8 @@
 package ${basePackage}.${module}.controller;
 
-import ${basePackage}.core.Result;
-import ${basePackage}.core.ResultGenerator;
+import ${basePackage}.common.core.Result;
+import ${basePackage}.common.core.ResultGenerator;
+import ${basePackage}.common.core.BaseController;
 import ${basePackage}.${module}.model.${modelNameUpperCamel};
 import ${basePackage}.${module}.service.${modelNameUpperCamel}Service;
 import com.github.pagehelper.PageHelper;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/${module}${baseRequestMapping}")
-public class ${modelNameUpperCamel}Controller {
+public class ${modelNameUpperCamel}Controller extends BaseController{
     @Resource
     private ${modelNameUpperCamel}Service ${modelNameLowerCamel}Service;
 

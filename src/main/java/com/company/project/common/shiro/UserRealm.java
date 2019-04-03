@@ -1,10 +1,10 @@
-package com.company.project.shiro;
+package com.company.project.common.shiro;
 
 import com.alibaba.fastjson.JSONObject;
 import com.company.project.auth.constants.AuthConstants;
 import com.company.project.auth.model.User;
 import com.company.project.auth.service.UserService;
-import com.company.project.core.Constants;
+import com.company.project.common.core.Constants;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -67,8 +67,8 @@ public class UserRealm extends AuthorizingRealm {
 		);
 		//session中不需要保存密码
         user.setPassword("");
-		//将用户信息放入session中
-		SecurityUtils.getSubject().getSession().setAttribute(Constants.SESSION_USER_INFO, user);
+//		//将用户信息放入session中
+//		SecurityUtils.getSubject().getSession().setAttribute(Constants.SESSION_USER_INFO, user);
 		return authenticationInfo;
 	}
 }

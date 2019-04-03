@@ -3,7 +3,7 @@ package ${basePackage}.${module}.service.impl;
 import ${basePackage}.${module}.dao.${modelNameUpperCamel}Mapper;
 import ${basePackage}.${module}.model.${modelNameUpperCamel};
 import ${basePackage}.${module}.service.${modelNameUpperCamel}Service;
-import ${basePackage}.core.BaseService;
+import ${basePackage}.common.core.BaseService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

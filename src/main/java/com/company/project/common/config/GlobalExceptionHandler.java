@@ -1,9 +1,9 @@
-package com.company.project.config;
+package com.company.project.common.config;
 
-import com.company.project.core.Result;
-import com.company.project.core.ResultCode;
-import com.company.project.core.ResultGenerator;
-import com.company.project.core.ServiceException;
+import com.company.project.common.core.Result;
+import com.company.project.common.core.ResultCode;
+import com.company.project.common.core.ResultGenerator;
+import com.company.project.common.core.ServiceException;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;

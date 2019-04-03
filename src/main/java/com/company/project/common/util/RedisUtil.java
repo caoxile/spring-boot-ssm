@@ -1,4 +1,4 @@
-package com.company.project.core.util;
+package com.company.project.common.util;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Package com.company.project.core.util
+ * @Package com.company.project.common.util
  * @Description
  * @Project spring-boot-ssm
  * @Author caoxile
