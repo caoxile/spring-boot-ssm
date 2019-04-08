@@ -56,6 +56,6 @@ public class UserController extends BaseController{
         PageHelper.startPage(page, size);
         List<User> list = userService.findAll();
         PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genSuccessResult();
+        return ResultGenerator.genSuccessResult(pageInfo);
     }
 }
