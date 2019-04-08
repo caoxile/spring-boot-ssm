@@ -1,11 +1,10 @@
-package com.company.project.auth.controller;
+package com.company.project.system.controller;
 
-import com.company.project.auth.model.User;
-import com.company.project.auth.service.UserService;
 import com.company.project.common.core.BaseController;
 import com.company.project.common.core.Result;
 import com.company.project.common.core.ResultGenerator;
-import com.company.project.common.log.SystemLog;
+import com.company.project.system.model.Log;
+import com.company.project.system.service.LogService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
@@ -18,44 +17,40 @@ import java.util.List;
  * @Create 2019-04-08
  */
 @RestController
-@RequestMapping("/auth/user")
-public class UserController extends BaseController{
+@RequestMapping("/system/log")
+public class LogController extends BaseController{
     @Resource
-    private UserService userService;
+    private LogService logService;
 
-    @SystemLog("用户管理-新增用户")
     @PostMapping("/add")
-    public Result add(@RequestBody User user) {
-        userService.save(user);
+    public Result add(@RequestBody Log log) {
+        logService.save(log);
         return ResultGenerator.genSuccessResult();
     }
 
-    @SystemLog("用户管理-删除用户")
     @PostMapping("/delete")
     public Result delete(@RequestParam Integer id) {
-        userService.deleteById(id);
+        logService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
-    @SystemLog("用户管理-修改用户")
     @PostMapping("/update")
-    public Result update(@RequestBody User user) {
-        userService.update(user);
+    public Result update(@RequestBody Log log) {
+        logService.update(log);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
     public Result detail(@RequestParam Integer id) {
-        User user = userService.findById(id);
-        return ResultGenerator.genSuccessResult(user);
+        Log log = logService.findById(id);
+        return ResultGenerator.genSuccessResult(log);
     }
 
-    @SystemLog("用户管理-查询用户列表")
     @PostMapping("/list")
     public Result list(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         PageHelper.startPage(page, size);
-        List<User> list = userService.findAll();
+        List<Log> list = logService.findAll();
         PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genSuccessResult();
+        return ResultGenerator.genSuccessResult(pageInfo);
     }
 }

@@ -56,6 +56,12 @@
             <version>1.2.5</version>
         </dependency>
 
+        <!-- aop依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
         <!--MySQL JDBC驱动-->
         <dependency>
             <groupId>mysql</groupId>

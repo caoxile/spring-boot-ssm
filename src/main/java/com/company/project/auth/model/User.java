@@ -1,7 +1,10 @@
 package com.company.project.auth.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
-import javax.persistence.*;
 
 @Table(name = "auth_user")
 public class User implements Serializable {

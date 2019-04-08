@@ -1,15 +1,12 @@
 package com.company.project.auth.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.company.project.auth.service.LoginService;
-import com.company.project.common.core.Constants;
 import com.company.project.common.core.Result;
 import com.company.project.common.core.ResultGenerator;
 import com.company.project.common.util.SHA256Util;
 import com.company.project.common.util.StringUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

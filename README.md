@@ -13,7 +13,7 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
 - [x] 日志管理(集成Logback)
 - [x] 缓存框架(集成Redis,Shiro共享session)
 - [x] 用户权限管理(集成Apache Shiro)
-- [ ] 操作日志记录
+- [x] 操作日志记录
 - [ ] 任务调度(集成Quartz)
 
 ## 快速启动
