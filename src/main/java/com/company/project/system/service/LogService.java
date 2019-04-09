@@ -9,5 +9,5 @@ import com.company.project.system.model.Log;
  * @Create 2019-04-08
  */
 public interface LogService extends Service<Log> {
-
+    void saveLog(Log log);
 }

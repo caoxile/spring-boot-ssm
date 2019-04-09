@@ -11,6 +11,7 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 
@@ -22,12 +23,12 @@ import org.springframework.util.Assert;
  * @Create 2018-07-24
  */
 @Service
+@Transactional
 public class LoginServiceImpl implements LoginService{
 
     private Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
 
 
-    @Override
     public Result login(String username, String password) throws Exception {
         Assert.isTrue(!StringUtil.isNullOrEmpty(username),"用户名为空");
         Assert.isTrue(!StringUtil.isNullOrEmpty(password),"密码为空");
@@ -58,7 +59,6 @@ public class LoginServiceImpl implements LoginService{
         return ResultGenerator.genSuccessResult(SecurityUtils.getSubject().getPrincipal());
     }
 
-    @Override
     public Result logout() {
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();

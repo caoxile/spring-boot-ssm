@@ -4,6 +4,7 @@ import com.company.project.common.core.BaseService;
 import com.company.project.system.dao.LogMapper;
 import com.company.project.system.model.Log;
 import com.company.project.system.service.LogService;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,4 +21,8 @@ public class LogServiceImpl extends BaseService<Log> implements LogService {
     @Resource
     private LogMapper logMapper;
 
+    @Async
+    public void saveLog(Log log) {
+        this.save(log);
+    }
 }

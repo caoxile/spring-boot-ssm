@@ -3,8 +3,6 @@ package com.company.project.common.core;
 
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Condition;
 
 import java.lang.reflect.Field;
@@ -14,7 +12,6 @@ import java.util.List;
 /**
  * 基于通用MyBatis Mapper插件的Service接口的实现
  */
-@Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public abstract class BaseService<T> implements Service<T> {
 
     @Autowired
