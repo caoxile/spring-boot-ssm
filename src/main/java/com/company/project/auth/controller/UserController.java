@@ -51,7 +51,7 @@ public class UserController extends BaseController{
 
     @SystemLog("用户管理-查询用户列表")
     @PostMapping("/list")
-    public Result list(@RequestBody QueryRequest request){
+    public Result list(@RequestParam QueryRequest request){
         PageInfo pageInfo = selectByPage(request,()->userService.findAll());
         return ResultGenerator.genSuccessResult(pageInfo);
     }
