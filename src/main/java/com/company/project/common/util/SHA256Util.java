@@ -6,15 +6,6 @@ import org.slf4j.LoggerFactory;
 
 import java.security.MessageDigest;
 
-/**
- * @version V1.0
- * @Title SHA256Encryptor
- * @Package com.qslb.framework.encrypt
- * @Description SHA256加密器
- * @Project qslb-framework
- * @Author yiminggang
- * @date 2016/9/1
- */
 public class SHA256Util {
 
     private static final Logger log = LoggerFactory.getLogger(SHA256Util.class);
