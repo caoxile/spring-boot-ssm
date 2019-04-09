@@ -3,15 +3,14 @@ package com.company.project.auth.controller;
 import com.company.project.auth.model.User;
 import com.company.project.auth.service.UserService;
 import com.company.project.common.core.BaseController;
+import com.company.project.common.core.QueryRequest;
 import com.company.project.common.core.Result;
 import com.company.project.common.core.ResultGenerator;
 import com.company.project.common.log.SystemLog;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @Author CodeGenerator
@@ -52,10 +51,8 @@ public class UserController extends BaseController{
 
     @SystemLog("用户管理-查询用户列表")
     @PostMapping("/list")
-    public Result list(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size) {
-        PageHelper.startPage(page, size);
-        List<User> list = userService.findAll();
-        PageInfo pageInfo = new PageInfo(list);
+    public Result list(@RequestBody QueryRequest request){
+        PageInfo pageInfo = selectByPage(request,()->userService.findAll());
         return ResultGenerator.genSuccessResult(pageInfo);
     }
 }
