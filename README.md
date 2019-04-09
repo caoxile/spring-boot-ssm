@@ -11,8 +11,8 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
 - [x] 代码自动生成工具
 - [x] Druid 集成阿里Druid数据库连接池以及API和数据库等监控            		
 - [x] 日志管理(集成Logback)
-- [x] 缓存框架(集成Redis,Shiro共享session)
-- [x] 用户权限管理(集成Apache Shiro)
+- [x] 缓存框架(集成Redis)
+- [x] 用户权限管理(集成Apache Shiro,Redis共享session)
 - [x] 操作日志记录
 - [ ] 任务调度(集成Quartz)
 

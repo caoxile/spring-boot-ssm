@@ -1,4 +1,4 @@
-package com.company.project.common.util;
+package com.company.project.common.service;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @Create 2018-09-06
  */
 @Component
-public class RedisUtil {
+public class RedisService {
 
     @Resource
     private RedisTemplate<String,Object> redisTemplate;

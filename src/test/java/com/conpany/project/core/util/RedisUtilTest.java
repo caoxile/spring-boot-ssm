@@ -1,7 +1,7 @@
 package com.conpany.project.core.util;
 
 import com.company.project.Application;
-import com.company.project.common.util.RedisUtil;
+import com.company.project.common.service.RedisService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,12 +21,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class RedisUtilTest {
 
     @Autowired
-    RedisUtil redisUtil;
+    RedisService redisService;
 
     @Test
     public void setTest() {
-        redisUtil.set("hello", "redis");
-        Assert.assertEquals("redis", redisUtil.get("hello"));
+        redisService.set("hello", "redis");
+        Assert.assertEquals("redis", redisService.get("hello"));
     }
 
 }
