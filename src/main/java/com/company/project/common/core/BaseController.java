@@ -24,8 +24,8 @@ public class BaseController {
         return getSubject().getSession();
     }
 
-    protected PageInfo<?> selectByPage(QueryRequest request, Supplier<?> s) {
-        PageHelper.startPage(request.getPageNum(), request.getPageSize());
+    protected PageInfo<?> selectByPage(int pageNum,int pageSize, Supplier<?> s) {
+        PageHelper.startPage(pageNum,pageSize);
         PageInfo<?> pageInfo = new PageInfo<>((List<?>) s.get());
         PageHelper.clearPage();
         return pageInfo;

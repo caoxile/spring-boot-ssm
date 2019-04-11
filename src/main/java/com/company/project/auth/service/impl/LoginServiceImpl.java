@@ -1,18 +1,25 @@
 package com.company.project.auth.service.impl;
 
+import com.company.project.auth.model.User;
 import com.company.project.auth.service.LoginService;
+import com.company.project.auth.service.PermissionService;
+import com.company.project.common.core.Constants;
 import com.company.project.common.core.Result;
 import com.company.project.common.core.ResultGenerator;
 import com.company.project.common.util.SHA256Util;
 import com.company.project.common.util.StringUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+
+import java.util.Set;
 
 
 /**
@@ -28,6 +35,8 @@ public class LoginServiceImpl implements LoginService{
 
     private Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
 
+    @Autowired
+    private PermissionService permissionService;
 
     public Result login(String username, String password) throws Exception {
         Assert.isTrue(!StringUtil.isNullOrEmpty(username),"用户名为空");
@@ -45,28 +54,23 @@ public class LoginServiceImpl implements LoginService{
         }
     }
 
+    /**
+     * 在getInfo的时候，重新获取权限，并且更新session
+     * @return
+     */
     @Override
     public Result getInfo() {
-        //从session获取用户信息
-//        Session session = SecurityUtils.getSubject().getSession();
-//        JSONObject userInfo = (JSONObject) session.getAttribute(Constants.SESSION_USER_INFO);
-////        String username = userInfo.getString("username");
-////        JSONObject userPermission = permissionService.getUserPermission(username);
-//        JSONObject userPermission = null;
-//        session.setAttribute(Constants.SESSION_USER_PERMISSION, userPermission);
-//        userInfo.put("userPermission", userPermission);
-//        return ResultGenerator.genSuccessResult(userInfo);
-        return ResultGenerator.genSuccessResult(SecurityUtils.getSubject().getPrincipal());
+        Session session = SecurityUtils.getSubject().getSession();
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        Set<String> userStringPermissions = permissionService.findUserStringPermissions(user.getId());
+        user.setPermissions(userStringPermissions);
+        session.setAttribute(Constants.SESSION_USER_PERMISSION, userStringPermissions);
+        return ResultGenerator.genSuccessResult(user);
     }
 
     public Result logout() {
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
-//        try {
-//            Subject currentUser = SecurityUtils.getSubject();
-//            currentUser.logout();
-//        } catch (Exception e) {
-//        }
         return ResultGenerator.genSuccessResult();
     }
 

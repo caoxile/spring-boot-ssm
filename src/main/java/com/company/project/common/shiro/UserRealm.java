@@ -1,6 +1,5 @@
 package com.company.project.common.shiro;
 
-import com.alibaba.fastjson.JSONObject;
 import com.company.project.auth.constants.AuthConstants;
 import com.company.project.auth.model.User;
 import com.company.project.auth.service.UserService;
@@ -16,7 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Collection;
+import java.util.Set;
 
 /**
  * @author: caoxile
@@ -34,12 +33,10 @@ public class UserRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		Session session = SecurityUtils.getSubject().getSession();
 		//查询用户的权限
-		JSONObject permission = (JSONObject) session.getAttribute(Constants.SESSION_USER_PERMISSION);
-		logger.info("permission的值为:" + permission);
-		logger.info("本用户权限为:" + permission.get("permissionList"));
+		Set<String> permissions = (Set<String>) session.getAttribute(Constants.SESSION_USER_PERMISSION);
 		//为当前用户设置角色和权限
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-		authorizationInfo.addStringPermissions((Collection<String>) permission.get("permissionList"));
+		authorizationInfo.setStringPermissions(permissions);
 		return authorizationInfo;
 	}
 
@@ -67,8 +64,6 @@ public class UserRealm extends AuthorizingRealm {
 		);
 		//session中不需要保存密码
         user.setPassword("");
-//		//将用户信息放入session中
-//		SecurityUtils.getSubject().getSession().setAttribute(Constants.SESSION_USER_INFO, user);
 		return authenticationInfo;
 	}
 }

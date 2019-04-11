@@ -5,6 +5,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Set;
 
 @Table(name = "auth_user")
 public class User implements Serializable {
@@ -39,6 +40,17 @@ public class User implements Serializable {
      * 状态
      */
     private String status;
+
+    /**
+     * 角色
+     */
+    private Set<String> roles;
+
+
+    /**
+     * 权限
+     */
+    private Set<String> permissions;
 
     private static final long serialVersionUID = 1L;
 
@@ -148,5 +160,21 @@ public class User implements Serializable {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Set<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
+    }
+
+    public Set<String> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<String> permissions) {
+        this.permissions = permissions;
     }
 }
