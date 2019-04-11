@@ -3,7 +3,6 @@ package ${basePackage}.${module}.controller;
 import ${basePackage}.common.core.Result;
 import ${basePackage}.common.core.ResultGenerator;
 import ${basePackage}.common.core.BaseController;
-import ${basePackage}.common.core.QueryRequest;
 import ${basePackage}.${module}.model.${modelNameUpperCamel};
 import ${basePackage}.${module}.service.${modelNameUpperCamel}Service;
 import com.github.pagehelper.PageInfo;
@@ -46,8 +45,8 @@ public class ${modelNameUpperCamel}Controller extends BaseController{
     }
 
     @PostMapping("/list")
-    public Result list(@RequestParam QueryRequest request) {
-        PageInfo pageInfo = selectByPage(request,()->${modelNameLowerCamel}Service.findAll());
+    public Result list(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize) {
+        PageInfo pageInfo = selectByPage(pageNum,pageSize,()->${modelNameLowerCamel}Service.findAll());
         return ResultGenerator.genSuccessResult(pageInfo);
     }
 }
