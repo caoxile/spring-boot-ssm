@@ -48,4 +48,9 @@ public class PermissionController extends BaseController{
         PageInfo pageInfo = selectByPage(pageNum,pageSize,()->permissionService.findAll());
         return ResultGenerator.genSuccessResult(pageInfo);
     }
+
+    @PostMapping("/tree")
+    public Result tree(){
+        return ResultGenerator.genSuccessResult(permissionService.findPermissionsTree());
+    }
 }

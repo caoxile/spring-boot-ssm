@@ -2,6 +2,7 @@ package com.company.project.auth.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Table(name = "auth_permission")
 public class Permission implements Serializable {
@@ -34,6 +35,8 @@ public class Permission implements Serializable {
      */
     @Column(name = "parent_id")
     private Integer parentId;
+
+    private List<Permission> children;
 
     private static final long serialVersionUID = 1L;
 
@@ -125,5 +128,13 @@ public class Permission implements Serializable {
      */
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
+    }
+
+    public List<Permission> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Permission> children) {
+        this.children = children;
     }
 }
