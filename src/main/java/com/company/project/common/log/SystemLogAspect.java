@@ -42,15 +42,9 @@ public class SystemLogAspect {
     public void pointcut() {}
 
     @Around("pointcut()")
-    public Object systemLogAfterReturning(ProceedingJoinPoint point){
+    public Object systemLogAfterReturning(ProceedingJoinPoint point) throws Throwable {
         User user = (User) SecurityUtils.getSubject().getPrincipal();
-        Object result = null;
-        try {
-            // 执行方法
-            result = point.proceed();
-        } catch (Throwable e) {
-            log.error(e.getMessage());
-        }
+        Object result = point.proceed();
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         Log log = new Log();
         log.setIp(IPUtil.getIpAddress(request));
