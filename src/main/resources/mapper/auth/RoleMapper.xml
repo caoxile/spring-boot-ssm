@@ -9,4 +9,10 @@
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+
+  <select id="findUserRoles" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select r.* from auth_user_role ur
+    left join auth_role r on ur.role_id=r.id
+    where ur.user_id=#{userId}
+  </select>
 </mapper>

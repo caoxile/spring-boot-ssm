@@ -43,14 +43,21 @@ public class SystemLogAspect {
 
     @Around("pointcut()")
     public Object systemLogAfterReturning(ProceedingJoinPoint point) throws Throwable {
+        //如果是登出，要在登出前获取User
         User user = (User) SecurityUtils.getSubject().getPrincipal();
+        //执行操作
         Object result = point.proceed();
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        Log log = new Log();
-        log.setIp(IPUtil.getIpAddress(request));
+        //如果是登录，要在登录后获取User
         if(user==null){
             user = (User) SecurityUtils.getSubject().getPrincipal();
         }
+        //如果是登录异常将无法记录操作日志
+        if(user==null){
+            return result;
+        }
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        Log log = new Log();
+        log.setIp(IPUtil.getIpAddress(request));
         log.setUserId(user.getId());
         log.setUri(request.getRequestURI());
         log.setCreateTime(new Date());

@@ -3,6 +3,7 @@ package com.company.project.auth.service.impl;
 import com.company.project.auth.model.User;
 import com.company.project.auth.service.LoginService;
 import com.company.project.auth.service.PermissionService;
+import com.company.project.auth.service.RoleService;
 import com.company.project.common.core.Constants;
 import com.company.project.common.core.Result;
 import com.company.project.common.core.ResultGenerator;
@@ -38,6 +39,9 @@ public class LoginServiceImpl implements LoginService{
     @Autowired
     private PermissionService permissionService;
 
+    @Autowired
+    private RoleService roleService;
+
     public Result login(String username, String password) throws Exception {
         Assert.isTrue(!StringUtil.isNullOrEmpty(username),"用户名为空");
         Assert.isTrue(!StringUtil.isNullOrEmpty(password),"密码为空");
@@ -64,6 +68,7 @@ public class LoginServiceImpl implements LoginService{
         User user = (User) SecurityUtils.getSubject().getPrincipal();
         Set<String> userStringPermissions = permissionService.findUserStringPermissions(user.getId());
         user.setPermissions(userStringPermissions);
+        user.setRoles(roleService.findUserStringRoles(user.getId()));
         session.setAttribute(Constants.SESSION_USER_PERMISSION, userStringPermissions);
         return ResultGenerator.genSuccessResult(user);
     }

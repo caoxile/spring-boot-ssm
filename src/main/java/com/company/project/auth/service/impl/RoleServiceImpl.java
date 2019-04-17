@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 /**
@@ -20,4 +23,13 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
     @Resource
     private RoleMapper roleMapper;
 
+    @Override
+    public List<Role> findUserRoles(int userId) {
+        return roleMapper.findUserRoles(userId);
+    }
+
+    @Override
+    public Set<String> findUserStringRoles(int userId) {
+        return findUserRoles(userId).stream().map(Role::getRoleName).collect(Collectors.toSet());
+    }
 }
