@@ -55,6 +55,11 @@ public class RoleController extends BaseController{
         return ResultGenerator.genSuccessResult(pageInfo);
     }
 
+    @PostMapping("/all")
+    public Result allRoleList(){
+        return ResultGenerator.genSuccessResult(roleService.findAll());
+    }
+
     @SystemLog("角色管理-设置权限[新增]")
     @PostMapping("/addpermission")
     @RequiresPermissions("role:setpermission")

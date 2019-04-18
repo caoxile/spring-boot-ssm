@@ -16,6 +16,10 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
 - [x] 操作日志记录
 - [ ] 任务调度(集成Quartz)
 
+## 环境准备
+1. MySql
+2. Redis
+
 ## 快速启动
 1. 克隆项目
 ```
@@ -54,7 +58,7 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
     mvn spring-boot:run
 ```
 6. 使用Postman等工具测试API
-- 首先登录(/auth/login) (用户名:tom 密码:hellotom)
+- 首先登录(/auth/login) (用户名:admin 密码:hellotom)
 - 再测试其他API
 
 ## 技术文档

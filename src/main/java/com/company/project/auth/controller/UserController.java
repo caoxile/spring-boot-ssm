@@ -30,35 +30,29 @@ public class UserController extends BaseController{
     @SystemLog("用户管理-新增用户")
     @PostMapping("/add")
     public Result add(@RequestBody User user) {
-        userService.save(user);
+        userService.addUser(user);
         return ResultGenerator.genSuccessResult();
     }
 
     @SystemLog("用户管理-删除用户")
     @PostMapping("/delete")
     public Result delete(@RequestParam Integer id) {
-        userService.deleteById(id);
+        userService.deleteUser(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @SystemLog("用户管理-修改用户")
     @PostMapping("/update")
-    public Result update(@RequestBody User user) {
-        userService.update(user);
+    public Result update(@RequestBody User user) throws Exception {
+        userService.updateUser(user);
         return ResultGenerator.genSuccessResult();
-    }
-
-    @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
-        User user = userService.findById(id);
-        return ResultGenerator.genSuccessResult(user);
     }
 
     @SystemLog("用户管理-查询用户列表")
     @PostMapping("/list")
     @RequiresPermissions("user:list")
     public Result list(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize) {
-        PageInfo pageInfo = selectByPage(pageNum,pageSize,()->userService.findAll());
+        PageInfo pageInfo = selectByPage(pageNum,pageSize,()->userService.findUsersWithRoleName());
         return ResultGenerator.genSuccessResult(pageInfo);
     }
 

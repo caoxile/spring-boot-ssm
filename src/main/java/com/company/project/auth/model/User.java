@@ -27,6 +27,11 @@ public class User implements Serializable {
     private String password;
 
     /**
+     * 昵称
+     */
+    private String nickname;
+
+    /**
      * 手机号
      */
     private String phone;
@@ -106,6 +111,24 @@ public class User implements Serializable {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * 获取昵称
+     *
+     * @return nickname - 昵称
+     */
+    public String getNickname() {
+        return nickname;
+    }
+
+    /**
+     * 设置昵称
+     *
+     * @param nickname - 昵称
+     */
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     /**

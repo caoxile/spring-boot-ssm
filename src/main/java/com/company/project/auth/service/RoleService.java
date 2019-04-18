@@ -15,6 +15,6 @@ public interface RoleService extends Service<Role> {
     // 获取用户所有的角色（列表）
     List<Role> findUserRoles(int userId);
 
-    // 获取用户所有的权限标识
+    // 获取用户所有的角色名称
     Set<String> findUserStringRoles(int userId);
 }

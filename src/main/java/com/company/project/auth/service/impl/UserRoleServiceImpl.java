@@ -5,9 +5,9 @@ import com.company.project.auth.model.UserRole;
 import com.company.project.auth.service.UserRoleService;
 import com.company.project.common.core.BaseService;
 import com.company.project.common.core.ServiceException;
-import io.jsonwebtoken.lang.Assert;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Condition;
 

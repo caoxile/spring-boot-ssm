@@ -7,7 +7,8 @@
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="opertation" jdbcType="VARCHAR" property="opertation" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="operation" jdbcType="VARCHAR" property="operation" />
     <result column="uri" jdbcType="VARCHAR" property="uri" />
     <result column="params" jdbcType="VARCHAR" property="params" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />

@@ -59,6 +59,8 @@ public class SystemLogAspect {
         Log log = new Log();
         log.setIp(IPUtil.getIpAddress(request));
         log.setUserId(user.getId());
+        log.setUsername(user.getUsername());
+        log.setNickname(user.getNickname());
         log.setUri(request.getRequestURI());
         log.setCreateTime(new Date());
 
@@ -66,7 +68,7 @@ public class SystemLogAspect {
         Method method = signature.getMethod();
         SystemLog logAnnotation = method.getAnnotation(SystemLog.class);
         if (logAnnotation != null) {
-            log.setOpertation(logAnnotation.value());
+            log.setOperation(logAnnotation.value());
         }
         log.setParams(JSON.toJSONString(point.getArgs()));
         logService.saveLog(log);

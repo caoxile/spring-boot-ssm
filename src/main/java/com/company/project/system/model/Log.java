@@ -20,9 +20,19 @@ public class Log implements Serializable {
     private Integer userId;
 
     /**
+     * 用户名称
+     */
+    private String username;
+
+    /**
+     * 昵称
+     */
+    private String nickname;
+
+    /**
      * 操作描述
      */
-    private String opertation;
+    private String operation;
 
     /**
      * 请求API
@@ -83,22 +93,28 @@ public class Log implements Serializable {
         this.userId = userId;
     }
 
-    /**
-     * 获取操作描述
-     *
-     * @return opertation - 操作描述
-     */
-    public String getOpertation() {
-        return opertation;
+    public String getUsername() {
+        return username;
     }
 
-    /**
-     * 设置操作描述
-     *
-     * @param opertation 操作描述
-     */
-    public void setOpertation(String opertation) {
-        this.opertation = opertation;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getOperation() {
+        return operation;
+    }
+
+    public void setOperation(String operation) {
+        this.operation = operation;
     }
 
     /**
