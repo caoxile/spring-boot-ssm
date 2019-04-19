@@ -18,4 +18,10 @@
       left join auth_permission p on rp.permission_id=p.id
       where ur.user_id=#{userId}
   </select>
+
+  <select id="findRolePermissions" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select p.* from auth_role_permission rp
+    left join auth_permission p on rp.permission_id=p.id
+    where rp.role_id=#{roleId}
+  </select>
 </mapper>

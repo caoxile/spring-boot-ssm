@@ -61,4 +61,9 @@ public class PermissionServiceImpl extends BaseService<Permission> implements Pe
         }
         return treeList;
     }
+
+    @Override
+    public List<Permission> findRolePermissions(Integer roleId) {
+        return permissionMapper.findRolePermissions(roleId);
+    }
 }

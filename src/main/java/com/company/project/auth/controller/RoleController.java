@@ -55,14 +55,21 @@ public class RoleController extends BaseController{
         return ResultGenerator.genSuccessResult(pageInfo);
     }
 
+    //所有的角色
     @PostMapping("/all")
     public Result allRoleList(){
         return ResultGenerator.genSuccessResult(roleService.findAll());
     }
 
+    //用户所属的角色列表
+    @PostMapping("/rolesbyuser")
+    public Result userRoleList(@RequestParam Integer userId){
+        return ResultGenerator.genSuccessResult(roleService.findUserRoles(userId));
+    }
+
     @SystemLog("角色管理-设置权限[新增]")
     @PostMapping("/addpermission")
-    @RequiresPermissions("role:setpermission")
+    @RequiresPermissions("role:assign-permission")
     public Result addPermission(@RequestBody RolePermission rolePermission) {
         rolePermissionService.saveRolePermission(rolePermission);
         return ResultGenerator.genSuccessResult();
@@ -70,7 +77,7 @@ public class RoleController extends BaseController{
 
     @SystemLog("角色管理-设置权限[删除]")
     @PostMapping("/deletepermission")
-    @RequiresPermissions("role:setpermissions")
+    @RequiresPermissions("role:assign-permission")
     public Result deletePermission(@RequestBody RolePermission rolePermission) {
         rolePermissionService.deleteRolePermission(rolePermission);
         return ResultGenerator.genSuccessResult();

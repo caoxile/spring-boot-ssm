@@ -53,4 +53,10 @@ public class PermissionController extends BaseController{
     public Result tree(){
         return ResultGenerator.genSuccessResult(permissionService.findPermissionsTree());
     }
+
+    //角色拥有的权限列表
+    @PostMapping("/permissionsbyrole")
+    public Result rolePermissionList(@RequestParam Integer roleId){
+        return ResultGenerator.genSuccessResult(permissionService.findRolePermissions(roleId));
+    }
 }

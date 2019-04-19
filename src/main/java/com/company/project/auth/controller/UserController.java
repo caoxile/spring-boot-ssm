@@ -58,7 +58,7 @@ public class UserController extends BaseController{
 
     @SystemLog("用户管理-设置角色[新增]")
     @PostMapping("/addrole")
-    @RequiresPermissions("user:setrole")
+    @RequiresPermissions("user:assign-role")
     public Result addRole(@RequestBody UserRole userRole) {
         userRoleService.saveUserRole(userRole);
         return ResultGenerator.genSuccessResult();
@@ -66,7 +66,7 @@ public class UserController extends BaseController{
 
     @SystemLog("用户管理-设置角色[删除]")
     @PostMapping("/deleterole")
-    @RequiresPermissions("user:setrole")
+    @RequiresPermissions("user:assign-role")
     public Result deleteRole(@RequestBody UserRole userRole) {
         userRoleService.deleteUserRole(userRole);
         return ResultGenerator.genSuccessResult();

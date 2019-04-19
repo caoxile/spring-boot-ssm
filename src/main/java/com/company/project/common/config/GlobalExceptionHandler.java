@@ -9,6 +9,7 @@ import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,16 +50,23 @@ public class GlobalExceptionHandler {
     }
 
 	/**
-	 * 参数错误或系统自定义异常
+	 * 自定义异常
 	 */
 	@ExceptionHandler({IllegalArgumentException.class,ServiceException.class})
 	public Result serviceExceptionHandler(Exception exception) {
 		return ResultGenerator.genFailResult(exception.getMessage());
 	}
 
+	/**
+	 * HTTP请求参数异常
+	 */
+	@ExceptionHandler(MissingServletRequestParameterException.class)
+	public Result requestParameterExceptionHandler() {
+		return ResultGenerator.genFailResult("请求参数错误");
+	}
 
     /**
-     * GET/POST请求方法错误或接口不存在
+     * HTTP请求方法错误或接口不存在
      */
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class,NoHandlerFoundException.class})
     public Result httpRequestMethodHandler() {

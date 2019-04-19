@@ -23,4 +23,7 @@ public interface PermissionService extends Service<Permission> {
 
     // 系统权限的树形结构
     List<Permission> findPermissionsTree();
+
+    //获取角色拥有的权限列表
+    List<Permission> findRolePermissions(Integer roleId);
 }
