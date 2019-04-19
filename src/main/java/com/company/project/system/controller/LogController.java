@@ -3,14 +3,14 @@ package com.company.project.system.controller;
 import com.company.project.common.core.BaseController;
 import com.company.project.common.core.Result;
 import com.company.project.common.core.ResultGenerator;
-import com.company.project.system.model.Log;
 import com.company.project.system.service.LogService;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @Author CodeGenerator

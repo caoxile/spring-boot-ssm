@@ -5,7 +5,6 @@ import com.company.project.auth.model.User;
 import com.company.project.auth.service.RoleService;
 import com.company.project.auth.service.UserService;
 import com.company.project.common.core.BaseService;
-import com.company.project.common.core.ServiceException;
 import com.company.project.common.util.SHA256Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,17 +53,13 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         Assert.hasText(user.getNickname(),"昵称不能为空");
         Assert.hasText(user.getUsername(),"用户名不能为空");
         Assert.hasText(user.getPassword(),"密码不能为空");
-        try {
-            String pwd = SHA256Util.encrypt(user.getPassword().trim());
-            user.setPassword(pwd);
-            this.save(user);
-        }catch (Exception e){
-            throw new ServiceException("添加失败");
-        }
+        String pwd = SHA256Util.encrypt(user.getPassword().trim());
+        user.setPassword(pwd);
+        this.save(user);
     }
 
     @Override
-    public void updateUser(User user) throws Exception {
+    public void updateUser(User user) {
         Assert.notNull(user.getId(),"用户ID");
         User uptUser = new User();
         uptUser.setId(user.getId());

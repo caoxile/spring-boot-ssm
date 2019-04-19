@@ -14,7 +14,7 @@ public interface UserService extends Service<User> {
 
     void addUser(User user);
 
-    void updateUser(User user) throws Exception;
+    void updateUser(User user);
 
     void deleteUser(Integer id);
 }

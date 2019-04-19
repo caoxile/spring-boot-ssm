@@ -5,8 +5,7 @@ import com.company.project.auth.service.LoginService;
 import com.company.project.auth.service.PermissionService;
 import com.company.project.auth.service.RoleService;
 import com.company.project.common.core.Constants;
-import com.company.project.common.core.Result;
-import com.company.project.common.core.ResultGenerator;
+import com.company.project.common.core.ServiceException;
 import com.company.project.common.util.SHA256Util;
 import com.company.project.common.util.StringUtil;
 import org.apache.shiro.SecurityUtils;
@@ -42,7 +41,7 @@ public class LoginServiceImpl implements LoginService{
     @Autowired
     private RoleService roleService;
 
-    public Result login(String username, String password) throws Exception {
+    public void login(String username, String password) {
         Assert.isTrue(!StringUtil.isNullOrEmpty(username),"用户名为空");
         Assert.isTrue(!StringUtil.isNullOrEmpty(password),"密码为空");
         Subject currentUser = SecurityUtils.getSubject();
@@ -50,11 +49,10 @@ public class LoginServiceImpl implements LoginService{
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try {
             currentUser.login(token);
-            return ResultGenerator.genSuccessResult();
         } catch (UnknownAccountException | IncorrectCredentialsException | LockedAccountException e) {
-            return ResultGenerator.genFailResult(e.getMessage());
+            throw new ServiceException(e.getMessage());
         } catch (AuthenticationException e) {
-            return ResultGenerator.genFailResult("认证失败!");
+            throw new ServiceException("认证失败");
         }
     }
 
@@ -63,20 +61,19 @@ public class LoginServiceImpl implements LoginService{
      * @return
      */
     @Override
-    public Result getInfo() {
+    public User getInfo() {
         Session session = SecurityUtils.getSubject().getSession();
         User user = (User) SecurityUtils.getSubject().getPrincipal();
         Set<String> userStringPermissions = permissionService.findUserStringPermissions(user.getId());
         user.setPermissions(userStringPermissions);
         user.setRoles(roleService.findUserStringRoles(user.getId()));
         session.setAttribute(Constants.SESSION_USER_PERMISSION, userStringPermissions);
-        return ResultGenerator.genSuccessResult(user);
+        return user;
     }
 
-    public Result logout() {
+    public void logout() {
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
-        return ResultGenerator.genSuccessResult();
     }
 
 }

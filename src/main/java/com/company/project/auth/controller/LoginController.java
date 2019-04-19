@@ -3,6 +3,7 @@ package com.company.project.auth.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.company.project.auth.service.LoginService;
 import com.company.project.common.core.Result;
+import com.company.project.common.core.ResultGenerator;
 import com.company.project.common.log.SystemLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,8 @@ public class LoginController {
     public Result login(@RequestBody JSONObject loginUser) throws Exception {
         String username = loginUser.getString("username");
         String password = loginUser.getString("password");
-        return loginService.login(username, password);
+        loginService.login(username, password);
+        return ResultGenerator.genSuccessResult();
     }
 
     /**
@@ -37,7 +39,7 @@ public class LoginController {
      */
     @PostMapping("/info")
     public Result getInfo() {
-        return loginService.getInfo();
+        return ResultGenerator.genSuccessResult(loginService.getInfo());
     }
 
     /**
@@ -46,7 +48,8 @@ public class LoginController {
     @SystemLog("用户登出")
     @PostMapping("/logout")
     public Result logout() {
-        return loginService.logout();
+        loginService.logout();
+        return ResultGenerator.genSuccessResult();
     }
 
 }

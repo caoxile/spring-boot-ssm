@@ -1,5 +1,6 @@
 package com.company.project.common.util;
 
+import com.company.project.common.core.ServiceException;
 import org.apache.commons.codec.binary.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,14 +13,18 @@ public class SHA256Util {
 
     private final static String ALGORITHM = "SHA-256";
 
-    public static String encrypt(String text) throws Exception{
+    public static String encrypt(String text) {
 
         if (null == text || text.equals("")){
             return "";
         }
-        MessageDigest digest = MessageDigest.getInstance(ALGORITHM);
-        byte[] hash = digest.digest(text.getBytes("UTF-8"));
-        return Hex.encodeHexString(hash);
+        try {
+            MessageDigest digest = MessageDigest.getInstance(ALGORITHM);
+            byte[] hash = digest.digest(text.getBytes("UTF-8"));
+            return Hex.encodeHexString(hash);
+        }catch (Exception e){
+            throw new ServiceException("加密失败");
+        }
     }
 
 }
