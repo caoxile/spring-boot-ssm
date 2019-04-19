@@ -1,6 +1,10 @@
 ## 简介
 spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简单通用的项目，用于快速构建中小型API的后端服务系统. 可以做为一个种子项目,进行改造升级.
 
+另外,还有个对应的Vue+ElementUI的前端项目[vue-admin](https://github.com/caoxile/vue-admin),同样可以作为一个web前端的中向项目。
+
+这2个项目是集成测试过的，可以直接拿来开发项目。
+
 ## 特征
 - [x] Spring Boot 2                                                                 
 - [x] Spring MVC 		 		
@@ -29,8 +33,31 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
 
     执行bin/init_db.sql脚本,初始化表和数据
 
-3. 自动生成代码
-- 修改对```test```包内的代码生成器```CodeGenerator```的数据库链接等配置
+3. 对开发环境配置文件```application-dev.properties```进行配置(Mysql+Redis).
+- Mysql配置
+``` 
+    spring.datasource.url=jdbc:mysql://localhost:3306/project?characterEncoding=utf-8&useSSL=false
+    spring.datasource.username=tom
+    spring.datasource.password=hellotom
+```
+- Redis 配置
+```
+# Redis服务器地址
+spring.redis.host=localhost
+# Redis服务器连接端口
+spring.redis.port=6379
+# Redis服务器连接密码（默认为空）
+spring.redis.password=
+```
+4. 启动
+```
+    //在IDE中启动,或者直接执行下面命令
+    mvn spring-boot:run
+```
+
+## 代码自动生成工具
+
+1. 修改对```test```包内的代码生成器```CodeGenerator```的数据库链接等配置
 ```
     //JDBC配置
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/project";//数据库链接
@@ -39,28 +66,13 @@ spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";//数据库驱动类型
 
 ```
-- 在```CodeGenerator.main```方法中,输入表名,然后运行.(即可在src下生成基础代码)
+2. 在```CodeGenerator.main```方法中,输入表名,然后运行.(即可在src下生成基础代码)
 ```
     public static void main(String[] args) {
         //genCode("auth","auth_user"); // 参数1:模块名 参数2:表名
         genCodeByCustomModelName("auth","auth_user","User"); // 参数1:模块名 参数2:表名 参数3:自定义Model名
     }
 ```
-4. 对开发环境配置文件```application-dev.properties```进行配置(数据库).
-``` 
-    spring.datasource.url=jdbc:mysql://localhost:3306/project?characterEncoding=utf-8&useSSL=false
-    spring.datasource.username=tom
-    spring.datasource.password=hellotom
-```
-5. 启动
-```
-    //在IDE中启动,或者直接执行下面命令
-    mvn spring-boot:run
-```
-6. 使用Postman等工具测试API
-- 首先登录(/auth/login) (用户名:admin 密码:hellotom)
-- 再测试其他API
-
 ## 技术文档
 - Spring Boot（[Spring Boot官方文档](https://spring.io/projects/spring-boot)）
 - Spring MVC ([Spring MVC官方文档](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html))
