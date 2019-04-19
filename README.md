@@ -1,7 +1,7 @@
 ## 简介
 spring-boot-ssm 是一个基于Spring Boot & Spring & Spring MVC & MyBatis的简单通用的项目，用于快速构建中小型API的后端服务系统. 可以做为一个种子项目,进行改造升级.
 
-另外,还有个对应的Vue+ElementUI的前端项目[vue-admin](https://github.com/caoxile/vue-admin),同样可以作为一个web前端的中向项目。
+另外,还有个对应的Vue+ElementUI的前端项目[vue-admin](https://github.com/caoxile/vue-admin),同样可以作为一个web前端的种子项目。
 
 这2个项目是集成测试过的，可以直接拿来开发项目。
 
