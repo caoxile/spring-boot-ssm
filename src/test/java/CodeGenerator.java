@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.*;
 import org.mybatis.generator.internal.DefaultShellCallback;
-import org.mybatis.generator.plugins.SerializablePlugin;
 
 import java.io.File;
 import java.io.FileWriter;
