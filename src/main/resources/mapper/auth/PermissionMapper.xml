@@ -13,10 +13,16 @@
   </resultMap>
 
   <select id="findUserPermissions" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select p.* from auth_user_role ur
-      left join auth_role_permission rp on ur.role_id=rp.role_id
-      left join auth_permission p on rp.permission_id=p.id
-      where ur.user_id=#{userId}
+      SELECT
+        p.*
+     FROM
+         auth_user_role ur,
+         auth_role_permission rp,
+         auth_permission p
+     WHERE
+         ur.role_id = rp.role_id
+             AND rp.permission_id = p.id
+             AND ur.user_id = #{userId}
   </select>
 
   <select id="findRolePermissions" parameterType="java.lang.Integer" resultMap="BaseResultMap">
