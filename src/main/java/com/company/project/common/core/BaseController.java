@@ -1,13 +1,13 @@
 package com.company.project.common.core;
 
 import com.company.project.auth.model.User;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 public class BaseController {
@@ -25,9 +25,8 @@ public class BaseController {
     }
 
     protected PageInfo<?> selectByPage(int pageNum,int pageSize, Supplier<?> s) {
-        PageHelper.startPage(pageNum,pageSize);
-        PageInfo<?> pageInfo = new PageInfo<>((List<?>) s.get());
-        PageHelper.clearPage();
-        return pageInfo;
+        Page page = PageHelper.startPage(pageNum,pageSize);
+        s.get();
+        return new PageInfo<>(page.getResult());
     }
 }
