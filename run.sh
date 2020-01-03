@@ -34,7 +34,7 @@ JAVA_OPTS="-Xms1024M -Xmx2048M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=
 psid=0
 
 checkpid() {
-	javaps=`jps -l | grep itct-1.0.jar`
+	javaps=`jps -l | grep spring-boot-ssm-1.0.jar`
 	if [ -n "$javaps" ]; then
 		psid=`echo $javaps | awk '{print $1}'`
 	else
@@ -76,7 +76,7 @@ start() {
 
 		echo "================================"
 		echo 
-		echo "warn: itct already started!"
+		echo "warn: spring-boot-ssm already started!"
 		echo 
 		echo "================================"
 
@@ -84,9 +84,9 @@ start() {
 
 		echo "============================================================================="
 
-		echo "Starting itct backend service ..."
+		echo "Starting spring-boot-ssm backend service ..."
 
-		JAVA_CMD1="nohup java -jar $JAVA_OPTS -Dspring.profiles.active=$env itct-1.0.jar"
+		JAVA_CMD1="nohup java -jar $JAVA_OPTS -Dspring.profiles.active=$env spring-boot-ssm-1.0.jar"
 
 		echo $JAVA_CMD1 
 
